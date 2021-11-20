@@ -1,0 +1,16 @@
+{
+"companyName": "DefaultCompany",
+"productName": "Combat Swat  Desert Storm",
+"dataUrl": "vehicle_wars.data.unityweb",
+"wasmCodeUrl": "vehicle_wars.wasm.code.unityweb",
+"wasmFrameworkUrl": "vehicle_wars.wasm.framework.unityweb",
+"asmCodeUrl": "vehicle_wars.asm.code.unityweb",
+"asmMemoryUrl": "vehicle_wars.asm.memory.unityweb",
+"asmFrameworkUrl": "vehicle_wars.asm.framework.unityweb",
+"TOTAL_MEMORY": 268435456,
+"graphicsAPI": ["WebGL 2.0", "WebGL 1.0"],
+"webglContextAttributes": {"preserveDrawingBuffer": false},
+"splashScreenStyle": "Dark",
+"backgroundColor": "#000000",
+"cacheControl": {"default": "must-revalidate"}
+}
