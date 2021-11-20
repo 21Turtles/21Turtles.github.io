@@ -56,7 +56,7 @@ button {
 
         bttn.onclick = function () {
 
-          gameInstance = UnityLoader.instantiate("gameContainer", "https://zayaruzostreetorgan.com/uploads/1/2/6/0/126072267/vehicle_wars.json", {onProgress: UnityProgress,Module:{onRuntimeInitialized: function() {UnityProgress(gameInstance, "complete")}}});
+          gameInstance = UnityLoader.instantiate("gameContainer", "./vehicle_wars.json", {onProgress: UnityProgress,Module:{onRuntimeInitialized: function() {UnityProgress(gameInstance, "complete")}}});
           this.remove();
         }
       }
