@@ -14,7 +14,7 @@
     <EnumValue value="yes" display_value="Yes"/>
   </UserPref>
   <Content type="html" view="default,canvas">
-  <div id='dest'></div>
+  <div id='dest'>
   <script type="text/javascript">
   gadgets.util.registerOnLoadHandler(doRender);
 
