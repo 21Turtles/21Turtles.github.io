@@ -15,7 +15,7 @@
   </UserPref>
   <Content type="html" view="default,canvas">
   <div id='dest'>
-    <img src="./MASTRT.jpg">
+    <img src="./BANANER.png">
       </div>
   <script type="text/javascript">
   gadgets.util.registerOnLoadHandler(doRender);
