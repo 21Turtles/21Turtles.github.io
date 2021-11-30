@@ -7,7 +7,7 @@
           height="800" width="600" author="Google">
     <Require feature="dynamic-height"/>
   </ModulePrefs>
-  <UserPref name="iframeURL" display_name="URL to content" required="true"/>
+  <UserPref name="iframeURL" display_name="https://zayaruzostreetorgan.com/uploads/5/5/6/7/5567194/custom_themes/666344820848380631/barryhassecret.html" required="true"/>
   <UserPref name="scroll" display_name="Display scrollbar" default_value="auto" datatype="enum">
     <EnumValue value="auto" display_value="Automatic"/>
     <EnumValue value="no" display_value="No"/>
@@ -21,7 +21,7 @@
   function doRender(){
     // setup variables
     var prefs = new gadgets.Prefs();
-    var iframeURL = prefs.getString('iframeURL');
+    var iframeURL = prefs.getString('https://zayaruzostreetorgan.com/uploads/5/5/6/7/5567194/custom_themes/666344820848380631/barryhassecret.html');
     var scroll = prefs.getString('scroll');
     var height = 800;
     var width = 600;
