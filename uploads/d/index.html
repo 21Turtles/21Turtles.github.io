@@ -10,7 +10,9 @@
     document.getElementById("images").style.overflowY= "hidden";
     var canvas = document.getElementById("imgCanvas");
     var context = canvas.getContext("2d");
-    var img = new Image(300,300);
+      const geometry = new THREE.BoxGeometry( 1, 1, 1 );
+     const material = new THREE.MeshBasicMaterial( { color: 0xffff00 } );
+    var img = new THREE.Mesh( geometry, material );
     img.src = document.getElementById(imageId).src;
     context.drawImage(img, (0),(0));
 }
