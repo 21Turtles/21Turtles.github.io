@@ -1,29 +1,7 @@
 <script src="https://threejs.org/build/three.js"></script>
-<body>
- <div id="images">
- </div>
- <canvas onmousemove="draw(event)" style="margin:0;padding:0;" id="imgCanvas"
-          class="canvasView" width="1920" height="1080"></canvas> 
-  <script>
-     function createImageOnCanvas(imageId){
-    document.getElementById("imgCanvas").style.display = "block";
-    document.getElementById("images").style.overflowY= "hidden";
-    var canvas = document.getElementById("imgCanvas");
-    var context = canvas.getContext("2d");
-      const geometry = new THREE.BoxGeometry( 1, 1, 1 );
-     const material = new THREE.MeshBasicMaterial( { color: 0xffff00 } );
-    var img = new THREE.Mesh( geometry, material );
-    img.src = document.getElementById(imageId).src;
-    context.drawImage(img, (0),(0));
-}
-
-function draw(e){
-    var canvas = document.getElementById("imgCanvas");
-    var context = canvas.getContext("2d");
-    posx = e.clientX;
-    posy = e.clientY;
-    context.fillStyle = "#000000";
-   scene.add( mesh );
-    context.fillRect (posx, posy, 4, 4);
-}
-  </script>
+<script>
+ const geometry = new THREE.BoxGeometry( 1, 1, 1 );
+const material = new THREE.MeshBasicMaterial( { color: 0xffff00 } );
+const mesh = new THREE.Mesh( geometry, material );
+scene.add( mesh );
+</script>
