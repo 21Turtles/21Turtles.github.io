@@ -30,7 +30,7 @@
 
 			import * as THREE from 'three';
 
-			import Stats from './jsm/libs/stats.module.js';
+			import Stats from 'https://threejs.org/jsm/libs/stats.module.js';
 
 			import { OrbitControls } from 'https://threejs.org/examples/jsm/controls/OrbitControls.js';
 			import { FBXLoader } from 'https://threejs.org/examples/jsm/loaders/FBXLoader.js';
@@ -84,7 +84,7 @@
 
 				// model
 				const loader = new FBXLoader();
-				loader.load( 'models/fbx/Samba Dancing.fbx', function ( object ) {
+				loader.load( 'https://threejs.org/models/fbx/Samba Dancing.fbx', function ( object ) {
 
 					mixer = new THREE.AnimationMixer( object );
 
