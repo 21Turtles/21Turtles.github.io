@@ -4,13 +4,13 @@ const maxLoadTimesTrys = 4;
 //Main Libraries
 dependencyUrls.push("https://www.googletagmanager.com/gtag/js?id=UA-118283086-6", "https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js");
 //Ads Libraries
-dependencyUrls.push("./ads-prebid.js", "./IronSourceRV.js", "./cpmstar.js", "js/adsController.js");
+dependencyUrls.push("./ads-prebid.js", "./IronSourceRV.js", "./cpmstar.js", "./adsController.js");
 //Firebase/Google Libraries
-dependencyUrls.push("./googleAnalytics.js", "./firebase.js", "./login.js", "js/firebase-config.js", "js/firestore.js")
+dependencyUrls.push("./googleAnalytics.js", "./firebase.js", "./login.js", "./firebase-config.js", "./firestore.js")
 //Game Libraries
-dependencyUrls.push("./unityUrls.js", "./unityGame.js", "./mobileRedirect.js", "js/fullscreen.js")
+dependencyUrls.push("./unityUrls.js", "./unityGame.js", "./mobileRedirect.js", "./fullscreen.js")
 //etc. Libraries
-dependencyUrls.push("./windowResize.js", "./adblockManager.js", "./macUserAgent.js", "js/visibilityChangeListener.js", "PC/payment/js/xsolla.js")
+dependencyUrls.push("./windowResize.js", "./adblockManager.js", "./macUserAgent.js", "./visibilityChangeListener.js", "./xsolla.js")
 
 dynamicallyLoadScripts();
 
