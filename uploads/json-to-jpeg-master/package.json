@@ -1,0 +1,26 @@
+{
+  "name": "table-json-to-jpeg",
+  "version": "1.0.5",
+  "description": "Converts JSON 2d array (array of rows, rows = array of cells) into jpeg of that table using node-canvas",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "mocha tests/test-scripts"
+  },
+  "author": "Jack Considine <jackconsidine3@gmail.com> (jackconsidine.wordpress.com)",
+  "license": "ISC",
+  "dependencies": {
+    "canvas": "^1.6.5",
+    "fs": "0.0.1-security",
+    "path": "^0.12.7",
+    "trianglify": "^1.0.1",
+    "url": "^0.11.0"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "mocha": "^3.5.0",
+    "rewire": "^2.5.2"
+  }
+}

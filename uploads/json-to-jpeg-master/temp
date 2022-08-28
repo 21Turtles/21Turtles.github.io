@@ -1,0 +1,153 @@
+/**
+* @author Jack Considine <jackconsidine3@gmail.com>
+* @package
+* 2017-07-26
+*/
+
+
+/**
+ * Object that controls interaction between table model (see data mock), and the
+ * the ultimate view that is produced. Functions include finding width of each
+ * column, finding height of each column, and actually rendering the table
+ * @constructor
+ */
+function TableController  (td, rowHeaders, ctxWrapper) {
+  // construct 2d array containing table
+    var self = this;
+    this.tableArray = [];
+    this.colMinWidths = [];
+    this.colSizes = [];
+    constructTable();
+    getMinWidths();
+    this.rowHeaders = rowHeaders || false;
+    /**
+     * 2d array containing table data
+     * @type {[type]}
+     */
+
+
+     function getLargestCells () {
+       iterateOnTableData((colheader) => {
+         var smallestRow = colheader;
+         var minWidth = ctxWrapper.getTextSize(smallestRow).width;
+         // get colheader width, then each of the row's width
+         for (var i=0; i<td.data[colheader]; i++) {
+
+         }
+       });
+     }
+
+     /**
+      * [getMinWidths description]
+      * @return {[type]} [description]
+      */
+    function getMinWidths () {
+      iterateOnTableData((colHeader) => {
+        var smallestWord = getMinWord(colHeader.split(" "));
+        var minWidth = ctxWrapper.getTextSize(smallestWord).width;
+
+        for (var i=0; i<td.data[colHeader].length; i++) {
+            var w = ctxWrapper.getTextSize(getMinWord(td.data[colHeader][i].split(" "))).width
+
+            if (w > minWidth) {
+              minWidth = w;
+              smallestWord = getMinWord(td.data[colHeader][i].split(" "));
+            }
+        }
+        self.colMinWidths.push(smallestWord);
+      });
+    }
+
+    /**
+     * used in cases like finding min sized word, and finding max sized cell.
+     * @param  {(String) => String} minDeterminingFunction function for deriving min based on cell
+     * @param  {boolean} minComparison indicates whether we are sorting least first
+     * @return {[type]}                        [description]
+     */
+    function minHelperFunction (minDeterminingFunction, minComparison) {
+      iterateOnTableData((colHeader) => {
+        var smallestWord = minDeterminingFunction(colHeader);
+        // getMinWord(colHeader.split(" "));
+        var minWidth = ctxWrapper.getTextSize(smallestWord).width;
+
+        for (var i=0; i<td.data[colHeader].length; i++) {
+            var w = ctxWrapper.getTextSize(getMinWord(td.data[colHeader][i].split(" "))).width
+            if (((w > minWidth) && minComparison) || ((w <= minWidth) && !minComparison )) {
+              minWidth = w;
+              smallestWord = minDeterminingFunction(colHeader);
+              // getMinWord(td.data[colHeader][i].split(" "));
+            }
+        }
+        self.colMinWidths.push(smallestWord);
+      });
+    }
+
+
+
+
+    function getMinWord (wordArray) {
+      var minW = 0;
+      var smallestWord = "";
+      for (var i=0; i<wordArray.length; i++) {
+        // get width of word
+        var w = ctxWrapper.getTextSize(wordArray[i]).width;
+        if (w > minW) {
+          smallestWord = wordArray[i];
+          minW = w;
+        }
+      }
+      return smallestWord;
+    }
+
+    /**
+     * Converts table model into 2d array for easy reference
+     * @param  {[type]} td [description]
+     * @return {[type]}    [description]
+     */
+    function constructTable () {
+
+      setRowArrays(); //create empty array for each row
+      iterateOnTableData((colHeader) => {
+        self.tableArray[0].push(colHeader);
+        for (var i=1; i<=td.data[colHeader].length; i++) {
+          self.tableArray[i].push(td.data[colHeader][i-1]);
+        }
+      });
+    }
+
+    /**
+     * Helper function for easily accessing JSON data of table by supplying
+     * mapping function parameter
+     * @param  {(colheader) => void} mappedFunction what to do on each property of the table object
+     * @return {void}
+     */
+    function iterateOnTableData (mappedFunction) {
+      for (var colHeader in td.data) {
+        if (td.data.hasOwnProperty(colHeader)) {
+          mappedFunction(colHeader);
+        }
+      }
+    }
+
+
+    /**
+     * helper method. Creates empty array  for each row in the table, as
+     * well as one for the column headers
+     */
+   function setRowArrays ()  {
+      for (var colHeader in td.data) {
+        if (td.data.hasOwnProperty(colHeader)) {
+
+          for (var i=0; i<td.data[colHeader].length + 1; i++) {
+            self.tableArray.push([]); // push empty array
+          }
+          return;
+        }
+      }
+    }
+
+}
+
+
+module.exports = TableController;
+

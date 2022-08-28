@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: canvasconfig.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: canvasconfig.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+* @author Jack Considine &lt;jackconsidine3@gmail.com>
+* @package
+* 2017-07-26
+*/
+
+const Canvas = require('canvas');
+/* Configuration parameters */
+const CANVAS_HEIGHT = 500;
+const CANVAS_WIDTH = 2000;
+const TEXT_PADDING = 6; // 4px
+const TEXT_SIZE = 10;
+const FONT_FAMILY = "Helvetica";
+
+
+var Image = Canvas.Image;
+
+/**
+ * Contains information for other library classes to use a singleton
+ * configuration object
+ * @type {CanvasConfig}
+ */
+function CanvasConfig () {
+  this.canvas = new Canvas(CANVAS_WIDTH, CANVAS_HEIGHT);
+  this.contextWrapper = new Context2dWrapper(this.canvas, TEXT_PADDING, TEXT_SIZE, FONT_FAMILY, CANVAS_WIDTH, CANVAS_HEIGHT);
+}
+
+module.exports = new CanvasConfig();
+
+function Context2dWrapper (canvas, padding, textsize, font, constraintwidth, constraintHeight) {
+  var ctx = canvas.getContext('2d');
+  this.canvasMaxWidth = constraintwidth;
+  this.canvasMaxHeight = constraintHeight;
+  this.padding = padding;
+
+  this.getCanvas = () => {return canvas;}
+
+  this.writeText = (text, x, y, bold) => {
+    if (bold) ctx.font = "bold " + textsize + "px " + font;
+    else ctx.font = textsize + "px " + font;
+
+    ctx.fillText(text,  x, y + padding * 2);
+  }
+
+  this.writeLine = (x1, x2, y1, y2)  => {
+    x1 = (x1-padding &lt; 0) ? 0 : x1-padding;
+    x2 =(x2-padding &lt; 0) ? 0 : x2-padding;
+
+    ctx.beginPath();
+    ctx.moveTo(x1,y1);
+    ctx.lineTo(x2,y2);
+    ctx.stroke();
+  }
+
+  /**
+   * Returns the Y offset of a row which is a product of the row and the height of each row
+   * @param  {number} rowNum number row from the top
+   * @return {number} y offset
+   */
+  this.getRowHeight = (cartesianRow, tableRow) => {
+    return tableRow * (padding * 2) + (cartesianRow) *(textsize) +  padding + 0;
+  }
+
+  /**
+   * Same as above, but exclude last padding. This is to be able to draw strokes
+   * @return {[type]} [description]
+   */
+  this.getStartingRowHeight = (cartesianRow, tableRow) => {
+    return tableRow * (padding * 2) + (cartesianRow) *(textsize)  + 0;
+  }
+
+  this.getTextSize = (text) => {
+    var rawMeasure = ctx.measureText(text);
+    rawMeasure.width += padding * 2; // apply padding on both sides
+    return rawMeasure;
+  }
+  /**
+   * Get width without paddign
+   * @param  {string} text text that we are getting width of
+   * @return {object}     measure text object where width is an attribue
+   */
+  this.getRawTextSize = (text) => {
+    return ctx.measureText(text);
+  }
+  /**
+   * Draws a rectangle of a certain color
+   * @param   {number}  x1   left most point
+   * @param   {number}  y1   top most point
+   * @param   {number}  x2   right most point
+   * @param   {number}  y2   bottom most point
+   * @param   {string}  color  string containing hex color. Needs hash prefix
+   * @return  {void}
+   */
+  this.shadeRect = (x1, y1, x2, y2, color) => {
+      ctx.fillStyle=color;
+      ctx.fillRect(x1, y1, x2, y2 + padding * 2);
+      ctx.fillStyle = "#000";
+  }
+
+
+
+  /**
+   * Draws the frame of a rectangle (the outline)
+   * @param   {number}  x1   left most point
+   * @param   {number}  y1   top most point
+   * @param   {number}  x2   right most point
+   * @param   {number}  y2   bottom most point
+   * @return  {void}
+   */
+  this.hollowRect = (x1, y1, x2, y2) => {
+    ctx.rect(x1, y1, x2, y2 + padding * 2);
+  }
+
+}
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="TableController.html">TableController</a></li></ul><h3>Global</h3><ul><li><a href="global.html#Canvas">Canvas</a></li><li><a href="global.html#CANVAS_HEIGHT">CANVAS_HEIGHT</a></li><li><a href="global.html#CanvasConfig">CanvasConfig</a></li><li><a href="global.html#columnCheck">columnCheck</a></li><li><a href="global.html#fs">fs</a></li><li><a href="global.html#getRawTextSize">getRawTextSize</a></li><li><a href="global.html#getRowHeight">getRowHeight</a></li><li><a href="global.html#getStartingRowHeight">getStartingRowHeight</a></li><li><a href="global.html#hollowRect">hollowRect</a></li><li><a href="global.html#shadeRect">shadeRect</a></li><li><a href="global.html#TableRenderer">TableRenderer</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.1</a> on Sun Aug 20 2017 22:02:15 GMT-0500 (CDT)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
