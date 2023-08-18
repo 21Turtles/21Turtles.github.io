@@ -1,0 +1,12 @@
+{
+"companyName": "Takohi",
+"productName": "UnityGB",
+"dataUrl": "TETRIS GB web-gl (html).data.unityweb",
+"wasmCodeUrl": "TETRIS GB web-gl (html).wasm.code.unityweb",
+"wasmFrameworkUrl": "TETRIS GB web-gl (html).wasm.framework.unityweb",
+"TOTAL_MEMORY": 268435456,
+"graphicsAPI": ["WebGL 2.0", "WebGL 1.0"],
+"webglContextAttributes": {"preserveDrawingBuffer": false},
+"splashScreenStyle": "Dark",
+"backgroundColor": "#231F20"
+}
